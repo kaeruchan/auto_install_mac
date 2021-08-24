@@ -30,25 +30,29 @@ source ~/.bash_profile
 
 ## editor
 clear
-echo -e "Now installing editor ...\\nWhich editor would you want to install?\\n1) Emacs\\n2) Atom\\n3) Vscode\\n4) Don't install now, I'll manually install it later\\nPlease choose [1-4]: \c"
+echo -e "Now installing editor ...\\nWhich editor would you want to install?\\n1) Emacs\\n2) Atom\\n3) Vscode\\n4) Don't install now, I'll manually install it later\\nPlease choose [1-4, otherwise skip]: \c"
 read ANS
-if $ANS -eq 1; then
+case $ANS in 
+    [1]* )
     # emacs
     echo "Installing Emacs ...\n"
     brew install emacs --cask
     ln -s ~/dotemacs.d .emacs.d
-elif $ANS -eq 2; then
+    ;;
+    [2]* ) 
     # atom
     echo "Installing Atom ... \n"
     brew install atom --cask
-elif $ANS -eq 3; then
+    ;;
+    [3]* ) 
     # vscode
     echo "Installing Vscode ... \n"
     brew install visual-studio-code --cask
-else
+    ;;
+    * )
     # not install
     echo "Skipped ... \n"
-fi
+esac
 
 ## Dropbox
 echo "Installing Dropbox ..."
@@ -75,3 +79,19 @@ sudo tlmgr update --self --all
 sudo tlmgr install collection-langjapanese
 brew install latexit --cask
 
+## pyenv
+echo "Now Installing pyenv ... \n"
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.bash_profile
+echo '  eval "$(pyenv init --path)"' >> ~/.bash_profile
+echo 'fi' >> ~/.bash_profile
+source ~/.bash_profile
+
+## pyenv initial
+
+pyenv install 3.9.1
+pyenv global 3.9.1
+
+pip install numpy scipy matplotlib
