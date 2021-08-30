@@ -19,7 +19,7 @@ brew upgrade
 echo "Now installing iterm2 ...\n"
 brew install iterm2 --cask
 # unzip package
-unzip -d ~ dotemacs.d.zip
+unzip -d ~ ~/auto_initial/library/dotemacs.d.zip
 ln -s ~/dotemacs.d/dotbash_profile .bash_profile
 ln -s ~/dotemacs.d/dotbashrc .bashrc
 source ~/.bash_profile
@@ -48,6 +48,25 @@ case $ANS in
     # vscode
     echo "Installing Vscode ... \n"
     brew install visual-studio-code --cask
+    # install dependencies
+    # C/C++
+    code --install-extension ms-vscode.cpptools
+    # Python
+    code --install-extension ms-python.python
+    code --install-extension ms-python.vscode-pylance
+    code --install-extension ms-toolsai.jupyter
+    # syntax checker
+    code --install-extension spellright
+    # Latex
+    code --install-extension James-Yu.latex-workshop
+    code --install-extension valentjn.vscode-ltex
+    # spell-check
+    code --install-extension latex-support
+
+    # font install -- ricky
+    brew tap homebrew/cask-fonts
+    brew install font-ricty-diminished --cask
+    sudo cp -f ~/auto_initial/settings.json ~/Library/Application\ Support/Code/User/
     ;;
     * )
     # not install
@@ -78,6 +97,10 @@ sudo /usr/local/texlive/2021basic/bin/universal-darwin/tlmgr path add
 sudo tlmgr update --self --all
 sudo tlmgr install collection-langjapanese
 brew install latexit --cask
+
+## Skim
+echo "Now Installing Skim (PDF viewer)...\n"
+brew install skim --cask
 
 ## pyenv
 echo "Now Installing pyenv ... \n"

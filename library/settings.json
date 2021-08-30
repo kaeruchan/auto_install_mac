@@ -1,0 +1,123 @@
+{
+    "editor.fontFamily": "Cascadia Code",
+    "editor.fontSize": 16,
+    "editor.fontWeight": 300,
+    "editor.tabSize": 4,
+    "editor.fontLigatures": true,
+    "files.autoGuessEncoding": true,
+    // python settings
+    //"python.jediEnable" : false,
+    "python.pythonPath": "/users/tianjishen/.pyenv/shims/python",
+    "python.autoComplete.addBrackets": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.pdf": "default"
+    },
+    "python.defaultInterpreterPath": "/users/tianjishen/.pyenv/shims/python",
+    "python.analysis.completeFunctionParens": true,
+    // latex
+    "latex-workshop.latex.tools":[
+        {
+            // latexmk を利用した xelatex によるビルドコマンド
+            "name": "Latexmk (XeLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        // latexmk を利用した uplatex によるビルドコマンド
+        {
+            "name": "Latexmk (upLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+          },
+        // latexmk を利用した platex によるビルドコマンド
+        // 古い LaTeX のテンプレートを使いまわしている (ドキュメントクラスが jreport や jsreport ) 場合のため
+        {
+            "name": "Latexmk (pLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-latex='platex'",
+                "-latexoption='-kanji=utf8 -no-guess-input-env'",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        // latexmk を利用した lualatex によるビルドコマンド
+        {
+            "name": "Latexmk (LuaLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-f",
+                "-gg",
+                "-pv",
+                "-lualatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ]
+        }
+      ],
+  
+    // latex-workshop.latex.recipes: Recipe の定義
+    "latex-workshop.latex.recipes": [
+        // LaTeX(pLaTeX) で書かれた文書のビルドレシピ
+        {
+          "name": "pLaTeX",
+          "tools": [
+              "Latexmk (pLaTeX)"
+          ]
+      },
+        // XeLaTeX で書かれた文書のビルドレシピ
+        {
+            "name": "XeLaTeX",
+            "tools": [
+                "Latexmk (XeLaTeX)"
+            ]
+        },
+        // LaTeX(upLaTeX) で書かれた文書のビルドレシピ
+        {
+            "name": "upLaTeX",
+            "tools": [
+                "Latexmk (upLaTeX)"
+            ]
+        },
+        // LuaLaTeX で書かれた文書のビルドレシピ
+        {
+            "name": "LuaLaTeX",
+            "tools": [
+                "Latexmk (LuaLaTeX)"
+            ]
+        }
+      ],
+      "spellright.language":["en-US"],
+      "latex-workshop.view.pdf.invert": 1,
+      "latex-workshop.view.pdf.viewer": "external",
+    //external terminal
+    "terminal.external.osxExec": "iTerm.app",
+}
