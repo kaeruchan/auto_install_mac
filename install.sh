@@ -105,6 +105,8 @@ brew install skim --cask
 ## pyenv
 echo "Now Installing pyenv ... \n"
 
+brew install pyenv
+
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.bash_profile
