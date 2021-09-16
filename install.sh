@@ -12,8 +12,13 @@ sudo xcode-select --install
 ## Homebrew install
 echo "Now installing Homebrew ...\n"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
+source ~/.bash_profile
+
 brew update
 brew upgrade
+# relogin
+exec $SHELL -l
 
 ## iterm2
 echo "Now installing iterm2 ...\n"
@@ -27,6 +32,9 @@ source ~/.bash_profile
 chsh -s /bin/bash
 echo "export BASH_SILENCE_DEPRECATION_WARNING=1" >> .bash_profile
 source ~/.bash_profile
+# relogin
+exec $SHELL -l
+
 
 ## editor
 clear
@@ -98,9 +106,14 @@ sudo tlmgr update --self --all
 sudo tlmgr install collection-langjapanese
 brew install latexit --cask
 
+exec $SHELL -l
+
+
 ## Skim
 echo "Now Installing Skim (PDF viewer)...\n"
 brew install skim --cask
+
+exec $SHELL -l
 
 ## pyenv
 echo "Now Installing pyenv ... \n"
@@ -120,3 +133,5 @@ pyenv install 3.9.1
 pyenv global 3.9.1
 
 pip install numpy scipy matplotlib
+
+exec $SHELL -l
