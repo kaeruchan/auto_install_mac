@@ -12,7 +12,8 @@ sudo xcode-select --install
 ## Homebrew install
 echo "Now installing Homebrew ...\n"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 source ~/.bash_profile
 
 brew update
