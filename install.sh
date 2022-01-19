@@ -13,7 +13,7 @@ if ! command -v brew &>/dev/null; then
     chsh -s /bin/bash
     echo "export BASH_SILENCE_DEPRECATION_WARNING=1" >> .bash_profile
     source ~/.bash_profile
-    if [[ `uname -m` == 'x86_64']]; then
+    if `uname -m` == 'x86_64'; then
         echo "Now installing Homebrew ...\n"
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' > ~/.bash_profile
