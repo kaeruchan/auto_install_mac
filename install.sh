@@ -45,7 +45,7 @@ fi
 
 ## iterm2
 
-if ! brew list iterm2 &>/dev/null; then
+if ! open -Ra "iterm.app" &>/dev/null; then
     echo "Now installing iterm2 ...\n"
     brew install iterm2 --cask
     # relogin
@@ -56,7 +56,7 @@ fi
 
 
 ## editor
-if [\( ! brew list emacs &>/dev/null \) -a \( ! brew list atom &>/dev/null \) -a \( ! brew list visual-studio-code &>/dev/null \)]; then
+if [\( ! open -Ra "Emacs.app" &>/dev/null \) -a \( ! open -Ra "Atom.app" &>/dev/null \) -a \( ! open -Ra "Visual studio code.app" &> /dev/null \)]; then
     clear
     echo -e "Now installing editor ...\\nWhich editor would you want to install?\\n1) Emacs\\n2) Atom\\n3) Vscode\\n4) Don't install now, I'll manually install it later\\nPlease choose [1-4, otherwise skip]: \c"
     read ANS
@@ -106,7 +106,7 @@ fi
 
 
 ## Dropbox
-if ! brew list dropbox &>/dev/null; then
+if ! open -Ra "Dropbox.app" &>/dev/null; then
     echo "Installing Dropbox ..."
     brew install dropbox --cask
 else
@@ -122,7 +122,7 @@ else
 fi
 
 ## Supermjograph
-if ! brew list wget &>/dev/null; then 
+if ! open -Ra "Supermjograph.app" &>/dev/null; then 
     echo "Installing Supermjograph ..."
     brew install wget
     wget -P ~ https://sourceforge.net/projects/mjograph/files/SuperMjograph/SuperMjograph-0.17.1.zip
@@ -155,7 +155,7 @@ fi
 
 
 ## Skim
-if ! brew list skim &>/dev/null; then
+if ! open -Ra "Skim.app" &>/dev/null; then
     echo "Now Installing Skim (PDF viewer)...\n"
     brew install skim --cask
 
