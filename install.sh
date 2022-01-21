@@ -8,7 +8,7 @@ if ! command -v brew &>/dev/null; then
     # change to bash as default shell
     chsh -s /bin/bash
     # unzip package
-    unzip -d ~ ~/auto_initial/library/dotemacs.d.zip
+    unzip -d ~ ./auto_initial/library/dotemacs.d.zip
     ln -s ~/dotemacs.d/dotbash_profile ~/.bash_profile
     ln -s ~/dotemacs.d/dotbashrc ~/.bashrc
     # echo "export BASH_SILENCE_DEPRECATION_WARNING=1" >> .bash_profile
