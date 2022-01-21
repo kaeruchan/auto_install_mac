@@ -5,39 +5,27 @@ sudo spctl --master-disable
 
 ## Homebrew install
 if ! command -v brew &>/dev/null; then
+    # change to bash as default shell
+    chsh -s /bin/bash
     # unzip package
     unzip -d ~ ~/auto_initial/library/dotemacs.d.zip
     ln -s ~/dotemacs.d/dotbash_profile ~/.bash_profile
     ln -s ~/dotemacs.d/dotbashrc ~/.bashrc
-    # change to bash as default shell
-    chsh -s /bin/bash
-    echo "export BASH_SILENCE_DEPRECATION_WARNING=1" >> .bash_profile
+    # echo "export BASH_SILENCE_DEPRECATION_WARNING=1" >> .bash_profile
     source ~/.bash_profile
-    if `uname -m` == 'x86_64'; then
-        echo "Now installing Homebrew ...\n"
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' > ~/.bash_profile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-        source ~/.bash_profile
-        brew update
-        brew upgrade
-        # relogin
-        exec $SHELL -l
-    else
-        echo "Now installing Homebrew ...\n"
-        # install rosetta2
+    if `uname -m` == 'arm64'; then
+        echo "Install Rosetta 2 due to Apple M1 Processor"
         /usr/sbin/softwareupdate --install-rosetta --agree-to-license
-
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' > ~/.bash_profile
-        echo 'alias brew86="arch -x86_64 /usr/local/homebrew/bin/brew"' > ~/.bash_profile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-        source ~/.bash_profile
-        brew update
-        brew upgrade
-        # relogin
-        exec $SHELL -l
     fi
+    echo "Now installing Homebrew ...\n"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' > ~/.bash_profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    source ~/.bash_profile
+    brew update
+    brew upgrade
+    # relogin
+    exec $SHELL -l
 else
     echo "Homebrew is already installed... Skipped..."
 fi
@@ -137,11 +125,7 @@ fi
 ## LaTeX
 if ! command -v tlmgr &>/dev/null; then  
     echo "Now Installing LaTeX (This may takes a long period)...\n"
-    if [[ `uname -m` == 'x86_64']]; then
-        brew install ghostscript
-    else
-        brew86 install ghostscript
-    if
+    brew install ghostscript 
     brew install basictex --cask 
     sudo /usr/local/texlive/2021basic/bin/universal-darwin/tlmgr path add
     sudo tlmgr update --self --all
@@ -170,13 +154,6 @@ if ! brew list pyenv &>/dev/null; then
     echo "Now Installing pyenv ... \n"
 
     brew install pyenv
-
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-    echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.bash_profile
-    echo '  eval "$(pyenv init --path)"' >> ~/.bash_profile
-    echo 'fi' >> ~/.bash_profile
-    source ~/.bash_profile
 
     ## pyenv initial
 
